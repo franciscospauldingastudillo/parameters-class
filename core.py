@@ -1,3 +1,4 @@
+import numpy as np
 class parameters:
     def __init__(self,**params):
         # Spectral resolution used in RFM experiments
