@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.interpolate import interp1d
 class parameters:
     def __init__(self,**params):
         # Spectral resolution used in RFM experiments
