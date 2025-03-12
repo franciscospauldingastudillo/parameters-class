@@ -352,5 +352,5 @@ def get_custom_atm(par,vres1=np.arange(0,3e4,1e2),vres2=np.arange(0,3e4,1e2)):
            'alpha_lt':alpha_lt,'alpha_gt':alpha_gt}
     #############################################################
     # T(K), RH(unitless), p(Pa), Gamma(K/m), rho(kg/m3), x(molar mixing ratio)
-#############################################################
-return dat1,dat2
+    #############################################################
+    return dat1,dat2
