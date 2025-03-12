@@ -7,5 +7,5 @@ setup(
     description="thermo-spectral parameters configuration class",
     author="Francisco Spaulding-Astudillo",
     license="MIT",
-    install_requires=[],
+    install_requires=['numpy', 'scipy'],
 )
