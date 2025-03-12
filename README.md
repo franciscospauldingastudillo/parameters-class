@@ -18,6 +18,9 @@ args = generate_args('earth',gases,ciapairs,RHs=0.75,RHmid=0.75,RHtrp=0.75,unifo
 par = parameters()
 par.generate_case(**args)
 
+# to change the spectral range ('wv-broadband','wv-rot-right','wv-vib-rot')
+par.update_band('wv-vib-rot') # e.g., vibration-rotation band (1000-1500)
+
 # to switch between SSM1D version with and without CTM absorption
 par.update_use_ssm1d_ctm(True) # or False
 ```
