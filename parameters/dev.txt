@@ -1,0 +1,4 @@
+Using "pip install -e ." to install the package means that any changes to core.py locally
+will be reflected in the parameters class immediately. This is useful for development purposes.
+So, if you change any of the parameters in core.py, it will be reflected immediately.
+To change core.py on the github repo, you need to do a push.
