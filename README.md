@@ -4,6 +4,7 @@ A simple, flexible Python class to manage configurable parameters in the RFM and
 
 ## Example Usage
 ```python
+from parameters import parameters
 # Define the case and the resolution
 # specify what gases and CIA-pairs to include (see generate_case)
 gases     = ['H2O']
