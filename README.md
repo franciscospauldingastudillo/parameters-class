@@ -6,7 +6,6 @@ A simple, flexible Python class to manage configurable parameters in the RFM and
 - Spectral resolution and band range setup
 - Case string generator
 - Optional SSM1D radiative parameter initialization
-- `get_custom_atm()` function to generate a thermodynamic profile
 
 ## Example Usage
 ```python
