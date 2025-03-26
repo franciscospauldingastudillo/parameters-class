@@ -35,5 +35,6 @@ par.update_use_ssm1d_ctm(True) # or False
 ## Installation
 ```bash
 git clone https://github.com/franciscospauldingastudillo/parameters-class
+cd parameters-class
 pip install .
 ```
