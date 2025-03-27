@@ -2,13 +2,15 @@ import numpy as np
 from scipy.interpolate import interp1d
 class parameters:
     def __init__(self,**params):
+        # Protected attributes
+        self._runtype = params.get('runtype', 'cooling')
+        self._band = params.get('band', 'wv-broadband')
+
         # Spectral resolution used in RFM experiments
         self.nu0 = params.get('nu0', 10)  # cm-1
         self.nu1 = params.get('nu1', 1500)  # cm-1
         self.dnu = params.get('dnu', 0.1)  # cm-1
         self.exp = params.get('exp', 'earth')
-        self.band = params.get('band', 'wv-broadband')
-        self.runtype = params.get('runtype', 'cooling')
         self.cpdef = params.get('cp', 29012 / 28.964)  # J/kg/K (default RFM value of specific heat)
         self.nsday = params.get('nsday', 86400)  # seconds per Earth-day
         self.TEMREL = params.get('TEMREL', 0)  # ground-air temp diff.
@@ -115,10 +117,31 @@ class parameters:
         # Updating case must update rfmcase
         self.update_rfmcase() 
 
+    @property
+    def runtype(self):
+        return self._runtype
+
+    @runtype.setter
+    def runtype(self, value):
+        raise AttributeError("Direct assignment to 'runtype' is not allowed. Use update_runtype() instead.")
+
     def update_runtype(self, new_runtype):
         """ Update runtype. """
-        self.runtype = new_runtype
+        self._runtype = new_runtype
         self.update_rfmcase()
+
+    @property
+    def band(self):
+        return self._band
+
+    @band.setter
+    def band(self, value):
+        raise AttributeError("Direct assignment to 'band' is not allowed. Use update_band() instead.")
+
+    def update_band(self, new_band):
+        """ Update the band and recalculate spectral range values. """
+        self.band = new_band
+        self.update_spectral_range()
 
     def update_rfmcase(self):
         """Refresh rfmcase using current runtype and case."""
@@ -153,11 +176,6 @@ class parameters:
             self.i1 = np.squeeze(np.where(np.abs(self.nus - self.nu1) == np.min(np.abs(self.nus - self.nu1))))
         else:
             raise ValueError(f"Invalid band type: {self.band}. Expected 'earth'.")
-
-    def update_band(self, new_band):
-        """ Update the band and recalculate spectral range values. """
-        self.band = new_band
-        self.update_spectral_range()
 
     def update_alpha(self):
         # Equation (13) from Spaulding-Astudillo and Mitchell (2025)
