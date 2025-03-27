@@ -123,11 +123,11 @@ class parameters:
     def update_rfmcase(self):
         """Refresh rfmcase using current runtype and case."""
         if self.runtype in ['cooling', 'kabs', 'od_trans']:
-            self.rfmcase = self.case + '_noctm'
+            self.rfmcase = self.case + '-noctm'
         elif self.runtype in ['continuum_cooling', 'continuum_kabs', 'continuum_od_trans']:
-            self.rfmcase = self.case + '_ctm'
+            self.rfmcase = self.case + '-ctm'
         elif self.runtype in ['octm_cooling', 'octm_kabs', 'octm_od_trans']:
-            self.rfmcase = self.case + '_octm'
+            self.rfmcase = self.case + '-octm'
         else:
             raise ValueError(f"Invalid runtype: {self.runtype}")
         
