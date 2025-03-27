@@ -9,6 +9,7 @@ class parameters:
         self.exp = params.get('exp', 'earth')
         self.band = params.get('band', 'wv-broadband')
         self.runtype = params.get('runtype', 'cooling')
+        self.update_runtype(self.runtype) 
         self.cpdef = params.get('cp', 29012 / 28.964)  # J/kg/K (default RFM value of specific heat)
         self.nsday = params.get('nsday', 86400)  # seconds per Earth-day
         self.TEMREL = params.get('TEMREL', 0)  # ground-air temp diff.
@@ -111,6 +112,18 @@ class parameters:
             str(self.uniform)
         ]) + cia_str
         print('generate_case: ',self.case)
+
+    def update_runtype(self, new_runtype):
+        """ Update runtype. """
+        self.runtype = new_runtype
+        if self.runtype in ['cooling','kabs','od_trans']:
+            self.rfmcase = self.case+'_noctm'
+        elif self.runtype in ['continuum_cooling','continuum_kabs','continuum_od_trans']:
+            self.rfmcase = self.case+'_ctm'
+        elif self.runtype in ['octm_cooling','octm_kabs','octm_od_trans']:
+            self.rfmcase = self.case+'_octm'
+        else:
+            raise ValueError(f"Invalid runtype: {self.runtype}")            
         
     def update_spectral_range(self):
         """ Update spectral range and band indices. """        
