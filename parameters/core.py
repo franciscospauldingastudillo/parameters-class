@@ -140,7 +140,7 @@ class parameters:
 
     def update_band(self, new_band):
         """ Update the band and recalculate spectral range values. """
-        self.band = new_band
+        self._band = new_band
         self.update_spectral_range()
 
     def update_rfmcase(self):
