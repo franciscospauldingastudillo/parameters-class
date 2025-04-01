@@ -153,6 +153,7 @@ class parameters:
             self.rfmcase = self.case + '-octm'
         else:
             raise ValueError(f"Invalid runtype: {self.runtype}")
+        print('update_rfmcase: ',self.rfmcase)
         
     def update_spectral_range(self):
         """ Update spectral range and band indices. """        
